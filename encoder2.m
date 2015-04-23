@@ -16,12 +16,19 @@ frequency3 = 392*4
 T=1;
 Fs=48000;
 t = 0 : 1/Fs : T;
+<<<<<<< HEAD
 waveform1 = sin(pi*frequency*t/T);
 waveform2 = sin(pi*frequency2*t/T);
 waveform3 = sin(pi*frequency3*t/T);
 waveform = waveform1 + waveform2 + waveform3;
+=======
+frequency2=330*4;
+waveform = sin(pi*frequency*t/T);
+waveform2 = sin(pi*frequency2*t/T);
+waveform3 = waveform + waveform2;
+>>>>>>> bb985881bb349f1d8b16ba70d9d072981a03da01
 disp(frequency);
 plot(t,waveform)
-sound(waveform, Fs);
+sound(waveform3, Fs);
 end
 

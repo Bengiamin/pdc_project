@@ -12,9 +12,12 @@ end
 T=1;
 Fs=48000;
 t = 0 : 1/Fs : T;
+frequency2=330*4;
 waveform = sin(pi*frequency*t/T);
+waveform2 = sin(pi*frequency2*t/T);
+waveform3 = waveform + waveform2;
 disp(frequency);
 plot(t,waveform)
-sound(waveform, Fs);
+sound(waveform3, Fs);
 end
 

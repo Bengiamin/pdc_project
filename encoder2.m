@@ -25,6 +25,6 @@ waveform = waveform1 + waveform2 + waveform3;
 
 disp(frequency);
 plot(t,waveform)
-sound(waveform3, Fs);
+sound(waveform, Fs);
 end
 

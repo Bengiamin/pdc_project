@@ -1,8 +1,8 @@
-function [ output_args ] = untitled( input_args )
+function [ output ] = transmitter( input )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
-%partie inutile puisque l'on enverra des char codï¿½s sous 8 bits donc
+%partie inutile puisque l'on enverra des char codés sous 8 bits donc
 %l'input sera modulo 4.
 d=size(input);
 modu = mod(d,4);

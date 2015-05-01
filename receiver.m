@@ -9,10 +9,10 @@ Fs = 48000;
 
 recObj = audiorecorder;
 
-in = input('start recording');
+in = input('press any key to start recording');
 record(recObj);
 
-in = input('stop recording');
+in = input('press any key to stop recording');
 stop(recObj);
 
 %play(recObj)

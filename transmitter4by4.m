@@ -26,6 +26,10 @@ function [ output ] = transmitter4by4( input )
     %samples vector
     t = 0 : 1/Fs : T;
     
+    
+    %il faut qu'on code ça en plus jolie. Genre generate_wave(input) et on
+    %fait générer les waves pour chaque input de 4 bits plus joliment que
+    %ça gros for avec plein de if
 
     for j = 1:d(2)
         disp j
@@ -84,10 +88,6 @@ function [ output ] = transmitter4by4( input )
             frequency = 10000;  
             disp else;
         end    
-
-        T=1;
-        Fs=48000;
-        t = 0 : 1/Fs : T;
 
         %Signals
         waveform1 = sin(pi*frequency*t/T);

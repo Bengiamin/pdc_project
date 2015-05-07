@@ -14,6 +14,7 @@ function [ output ] = transmitter4by4( input )
         input = cat(2,input,[0]);
     end
     input =(reshape(input, 4, []));
+    input = transpose(input);
     d= size(input);
 
     %duration [s]
@@ -23,8 +24,12 @@ function [ output ] = transmitter4by4( input )
     
     %waveform for binary PSK modulation coresponding 4-ary information
     waveform = [];
-    for j = 1:d(2)
-      waveform = [waveform,generate_waves(input(:, j), T, Fs)];
+    disp d;
+    disp(d);
+    for j = 1:d(1)
+        disp input(j, :)
+        disp(input(j, :));
+      waveform = [waveform,generate_waves(input(j, :), T, Fs)];
     end   
     
     %Play sound

@@ -2,9 +2,9 @@ function [ output, samples_subset ] = receiver( input_args )
 %record a sound and output the samples after a frequency filter
 
 %period [s]
-T=0.5;
+T=1;
 %sample rate [Hz] Supported by SoundCard (16000,48000,96000,192000)
-Fs = 8800;
+Fs = 16000;
 end_freq = 7000;
 minPeakHeight = 0.2;
 
@@ -29,7 +29,7 @@ else
 
 end
 
-
+output = y;
 
 subplot(4,1,1)
 plot(y);
@@ -139,7 +139,7 @@ bitarray = [];
 
 for i = 1:nfreq
     
-    bitarray = [bitarray decode(freq(i))];
+   % bitarray = [bitarray decode(freq(i))];
 
 end
 

@@ -2,6 +2,8 @@ function [ output ] = generate_waves(input, T, Fs )
 %GENERaTE_WAVES Waveformer for codeword input
 %   Detailed explanation goes here
 
+disp(size(input));
+
 if (input == [0 0 0 0])   
     frequency = 3000;
     disp 0;

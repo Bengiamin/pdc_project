@@ -51,7 +51,7 @@ elseif (input == [1;1;1;1])
     frequency = 6000; 
     disp 15;
 else
-    frequency = 10000;  
+    frequency = 7000;  
     disp else;
 end    
 

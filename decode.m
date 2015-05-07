@@ -4,7 +4,7 @@ function [ bitArray ] = decode( freq )
 tmp = freq /100;
 freq = 200* round(tmp, 0)
 
-bitArray = [0, 0, 0, 0];
+bitArray = [0 0 0 0];
 
 switch freq
     case 3000
@@ -40,7 +40,7 @@ switch freq
     case 6000
         bitArray = [1 1 1 1];
     otherwise
-        bitArray = [2, 2, 2, 2];
+        bitArray = [2 2 2 2];
 end
 
 end

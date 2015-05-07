@@ -24,13 +24,13 @@ function [ output ] = transmitter4by4( input )
     
     %waveform for binary PSK modulation coresponding 4-ary information
     waveform = [];
-    disp d;
-    disp(d);
     for j = 1:d(1)
         disp input(j, :)
         disp(input(j, :));
       waveform = [waveform,generate_waves(input(j, :), T, Fs)];
     end   
+    
+    waveform = [waveform, generate_waves([] , T, Fs)];
     
     %Play sound
     plot(waveform);

@@ -4,7 +4,7 @@ function [ freq ] = extract_freq( samples )
 Y= fft(samples);
 spectrum = Y.*conj(Y)/length(Y);
 % plot(spectrum)
-[~,freq] = max(spectrum)
+[~,freq] = max(spectrum);
 
 
 end

@@ -6,6 +6,7 @@ T=0.5;
 %sample rate [Hz] Supported by SoundCard (16000,48000,96000,192000)
 Fs = 8800;
 end_freq = 7000;
+minPeakHeight = 0.2;
 
 low_bound = 2500;
 high_bound =  8000;
@@ -46,12 +47,13 @@ Y_max =  2^nextpow2(length(y)) / 2 +1 ;
 frequencies = Fs * linspace(0, 1, Y_max);
 
 
+%plot the result
 Pyy = Y.*conj(Y)/length(Y);
 subplot(4,1,2)
 plot(frequencies,Pyy(1:Y_max))
 title('Power spectral density')
 xlabel('Frequency (Hz)')
-%axis([0,8000, 0, 2])
+axis([0,9000, 0, 2])
 
 low = 1;
 high = Y_max;
@@ -65,9 +67,12 @@ end
 filter = zeros(Y_max, 1);
 filter(low:high) = ones(high-low +1, 1);
 
+
+
 filteredY = Y(1:Y_max) .* filter;
 
 
+%plot the result
 Pyy = filteredY.*conj(filteredY)/length(filteredY);
 subplot(4,1,3)
 plot(frequencies,Pyy(1:Y_max))
@@ -83,7 +88,7 @@ plot(real(filteredy))
 
 %Find peaks
 
-[peaks, locations] = findpeaks(filteredy, 'npeaks', 2,'MinPeakHeight',0.2)
+[peaks, locations] = findpeaks(filteredy, 'npeaks', 2,'MinPeakHeight',minPeakHeight)
 %disp(peaks)
 %disp(locations)
 
@@ -102,15 +107,18 @@ endpoint = size(filteredy) - mod(size(filteredy(locations(1):end)), period );
 
 samples_subset = reshape(filteredy(locations(1):endpoint), period, []);
 
-
+nfreq = size(samples_subset);
+nfreq = nfreq(2)
 %extract frequencies from the each subsamples of signals
 %figure;
 
-freq = zeros([size(samples_subset), 1]);
+%disp(nfreq(2))
+
+freq = zeros([nfreq, 1]);
 
 %set bounds for the freq analysis
 
-for i = 1:size(samples_subset(1))
+for i = 1:nfreq
     f = extract_freq(samples_subset(:,i));
     if f == end_freq
         freq = freq(1:i-1);
@@ -127,13 +135,9 @@ end
 
 bitarray = [];
 
-disp(size(freq))
-
-figure;
-plot(freq(1, :))
 
 
-for i = 1:size(freq.')
+for i = 1:nfreq
     
     bitarray = [bitarray decode(freq(i))];
 

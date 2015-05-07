@@ -30,6 +30,8 @@ function [ output ] = transmitter4by4( input )
     %il faut qu'on code ça en plus jolie. Genre generate_wave(input) et on
     %fait générer les waves pour chaque input de 4 bits plus joliment que
     %ça gros for avec plein de if
+    
+    %les tables de bits doivent être [0 0 0 0] sans les virgules etc
 
     for j = 1:d(2)
         disp j
@@ -85,7 +87,7 @@ function [ output ] = transmitter4by4( input )
             frequency = 6000; 
             disp 15;
         else
-            frequency = 10000;  
+            frequency = 7000;  
             disp else;
         end    
 

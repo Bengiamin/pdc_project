@@ -1,16 +1,11 @@
-function [ output, samples_subset ] = sabrine( input_args )
-%record a sound and output the samples after a frequency filter
+function [ output ] = decoderV2( input_args )
+%record a sound and output the frequency found
 
     %period [s]
     T=1;
     %sample rate [Hz] Supported by SoundCard (16000,48000,96000,192000)
     Fs = 8000;
-    end_freq = 7000;
-    minPeakHeight = 0.2;
-
-    low_bound = 2500;
-    high_bound =  8000;
-    output = [];
+    out = [];
     if nargin > 0
         y = input_args;
     else
@@ -39,9 +34,7 @@ function [ output, samples_subset ] = sabrine( input_args )
     disp(i)
     shortTime = [];
 
-    shortTime = [];
-    test = y(i:(i+1000));
-    counter = 1;
+  
     while i < length(y)
        shortTime = [shortTime, y(i:(i+1000))];
        i = i + Fs;
@@ -63,8 +56,8 @@ function [ output, samples_subset ] = sabrine( input_args )
        Mag=abs(Y(1:length(han(:,n))/2)).^2;    
        [a,b]=max(Mag);     
        frequency = Fs*b/length(han(:,n));
-       output = [output; frequency*2]
+       out = [out; frequency*2]
     end;    
-    
+    output = out;
 end
 

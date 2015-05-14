@@ -2,7 +2,7 @@ function [ bitArray ] = decode( freq )
 %return the bit array of n bits (4) closer to the given frequency
 
 tmp = freq /100;
-freq = 200* round(tmp, 0)
+freq = 200* round(tmp);
 
 bitArray = [0 0 0 0];
 

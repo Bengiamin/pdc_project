@@ -1,15 +1,14 @@
 function [ output, samples_subset ] = receiver( input_args )
 %record a sound and output the samples after a frequency filter
 
-%period [s]
-T=1;
+
 %sample rate [Hz] Supported by SoundCard (16000,48000,96000,192000)
 Fs = 8000;
 end_freq = 7000;
 minPeakHeight = 0.2;
 
-low_bound = 2500;
-high_bound =  8000;
+low_bound = 1000;
+high_bound =  Fs;
 
 if nargin > 0
     y = input_args;
@@ -29,7 +28,6 @@ else
 
 end
 
-output = y;
 
 subplot(4,1,1)
 plot(y);
@@ -47,7 +45,7 @@ Y = fft(y);
 %filter all unwanted freq
 %create lowpass filter from biggest freq in Y
 Y_max =  2^nextpow2(length(y)) / 2 +1 ;
-frequencies = Fs * linspace(0, 1, Y_max);
+frequencies = Fs/2 * linspace(0, 1, Y_max);
 
 
 %plot the result
@@ -56,7 +54,9 @@ subplot(4,1,2)
 plot(frequencies,Pyy(1:Y_max))
 title('Power spectral density')
 xlabel('Frequency (Hz)')
+
 axis([0,Y_max, 0, 2])
+
 
 low = 1;
 high = Y_max;
@@ -99,6 +99,8 @@ plot(real(filteredy))
 %split from locations(1)+0.5*T until the end
 
 period = T * Fs /2;
+
+period = Fs;
 endpoint = size(filteredy) - mod(size(filteredy(locations(1):end)), period );
 
 % disp(size(filteredy))
@@ -141,7 +143,7 @@ bitarray = [];
 
 
 for i = 1:nfreq
-    
+
    bitarray = [bitarray decode(freq(i))];
 
 end

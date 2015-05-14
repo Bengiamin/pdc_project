@@ -10,6 +10,8 @@ minPeakHeight = 0.2;
 low_bound = 1000;
 high_bound =  Fs;
 
+T=1;
+
 if nargin > 0
     y = input_args;
 else

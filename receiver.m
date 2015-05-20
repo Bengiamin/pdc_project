@@ -126,7 +126,7 @@ freq = zeros([nfreq, 1]);
 %set bounds for the freq analysis
 
 for i = 1:nfreq
-    f = extract_freq(samples_subset(:,i));
+    f = extract_freq(samples_subset(:,i), Fs);
     if f == end_freq
         freq = freq(1:i-1);
         break;

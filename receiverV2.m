@@ -36,9 +36,9 @@ title('received signal')
 low_bound = 1000;
 high_bound =  8000;
 
-NFFT = 2^nextpow2(L); % Next power of 2 from length of y
+NFFT = 2^nextpow2(L(1)); % Next power of 2 from length of y
 Y = fft(y,NFFT);
-f = Fs/2*linspace(0,1,NFFT/2+1);
+f = Fs*linspace(0,1,NFFT/2+1);
 
 % Plot single-sided amplitude spectrum.
 subplot(4,1,2)
@@ -113,7 +113,7 @@ for n = 1:l(2)
    Y=fft(han(:,n));
    Mag=abs(Y(1:floor(length(han(:,n))/2))).^2;    
    [a,b]=max(Mag);     
-   frequency = Fs/2*b/length(han(:,n));
+   frequency = Fs*b/length(han(:,n));
    out = [out; frequency*2];
    bitsArray = [bitsArray decode(frequency)];
 end;    

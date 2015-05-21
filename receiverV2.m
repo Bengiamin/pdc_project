@@ -4,7 +4,7 @@ function [ frequencies, bits ] = receiverV2( input_args )
 %period [s]
 T=1;
 %sample rate [Hz] Supported by SoundCard (16000,48000,96000,192000)
-Fs = 8000;
+Fs = 16000;
 out = [];
 if nargin > 0
     y = input_args;
@@ -38,7 +38,7 @@ high_bound =  8000;
 
 NFFT = 2^nextpow2(L); % Next power of 2 from length of y
 Y = fft(y,NFFT);
-f = Fs*linspace(0,1,NFFT/2+1);
+f = Fs/2*linspace(0,1,NFFT/2+1);
 
 % Plot single-sided amplitude spectrum.
 subplot(4,1,2)
@@ -113,7 +113,7 @@ for n = 1:l(2)
    Y=fft(han(:,n));
    Mag=abs(Y(1:floor(length(han(:,n))/2))).^2;    
    [a,b]=max(Mag);     
-   frequency = Fs*b/length(han(:,n));
+   frequency = Fs/2*b/length(han(:,n));
    out = [out; frequency*2];
    bitsArray = [bitsArray decode(frequency)];
 end;    

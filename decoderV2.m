@@ -38,8 +38,6 @@ function [ output ] = decoderV2( input_args )
     while i < length(y)
        shortTime = [shortTime, y(i:(i+1000))];
        i = i + Fs;
-       disp i
-       disp(i);
     end
 
     l = size(shortTime);
@@ -56,8 +54,8 @@ function [ output ] = decoderV2( input_args )
        Mag=abs(Y(1:length(han(:,n))/2)).^2;    
        [a,b]=max(Mag);     
        frequency = Fs*b/length(han(:,n));
-       out = [out; frequency*2]
-    end;    
+       out = [out; decode(frequency)]
+    end;
     output = out;
 end
 

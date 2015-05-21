@@ -126,7 +126,7 @@ for i = 1:length(bitsArray)
        bits = [bits bitsArray(i)];
    end
 end
-
+uiwait(msgbox(num2str(bitsArray), 'The decoded message', 'modal'))
     
 end
 

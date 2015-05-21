@@ -1,7 +1,8 @@
 function [ output ] = transmitter4by4( input )
 %TRANSMITTER4BY4 Transform bits of an array into waveform and play it.
 %   Each group of 4 bits is transmitted by one waveform.
-
+    
+    input = textToBin(dialogBox);
     %padding if needed
     d=size(input);
     modu = mod(d,4);

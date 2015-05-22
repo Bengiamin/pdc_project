@@ -1,10 +1,12 @@
 function [ output ] = transmitter4by4( input )
 %TRANSMITTER4BY4 Transform bits of an array into waveform and play it.
 %   Each group of 4 bits is transmitted by one waveform.
-% assume the input is divisible by 4
+
+    % assume the input is divisible by 4
 
 
     input = textToBin(input);
+
 
     %padding if needed
     d=length(input);

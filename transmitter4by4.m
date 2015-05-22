@@ -1,22 +1,34 @@
 function [ output ] = transmitter4by4( input )
 %TRANSMITTER4BY4 Transform bits of an array into waveform and play it.
 %   Each group of 4 bits is transmitted by one waveform.
+% assume the input is divisible by 4
+
+
+    input = textToBin(input);
 
     %padding if needed
-    d=size(input);
-    modu = mod(d,4);
-    modulo = modu(2);
-    if (modulo == 1)
-        input = cat(2,input,[0,0,0]);
-    elseif (modulo == 2)
-        input =cat(2,input, [0,0]);
-    elseif (modulo == 3)
-        input = cat(2,input,[0]);
-    end
-    input =(reshape(input, 4, []));
-    input = transpose(input);
-    d= size(input);
+    d=length(input);
+    modulo = mod(d,4);
+    %disp(modulo)
+    %disp(input)
 
+    %modulo = modu(2);
+    if (modulo == 1)
+        input = strcat(input,'000');
+    elseif (modulo == 2)
+        input = strcat(input, '00');
+    elseif (modulo == 3)
+        input = strcat(input,'0');
+    end
+    
+    %disp(input)
+    
+    input = reshape(input, 4, []);
+    input = transpose(input);
+    d = size(input);
+
+    disp(input)
+    
     %duration [s]
     T=1;
     %sample rate [Hz] Supported by SoundCard (16000,48000,96000,192000)

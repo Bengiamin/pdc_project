@@ -24,7 +24,7 @@ else
 
 end
 
-L = length(y)
+L = length(y);
 minPeakHeight = 0.2;
 
 subplot(4,1,1)
@@ -83,11 +83,11 @@ title('filtered signal')
 
 
 %look for the first peaks
-[peaks, locations] = findpeaks(y, 'npeaks', 2,'MinPeakHeight',minPeakHeight)
+[peaks, locations] = findpeaks(y, 'npeaks', 2,'MinPeakHeight',minPeakHeight);
 
 %first_peak = find(diff(y) > average);
 i = locations(1) + 4000;
-disp i
+disp 'first location'
 disp(i)
 shortTime = [];
 
@@ -115,8 +115,13 @@ for n = 1:l(2)
    [a,b]=max(Mag);     
    frequency = Fs*b/length(han(:,n));
    out = [out; frequency*2];
-   bitsArray = [bitsArray decode(frequency)];
+   d = decode(frequency);
+   if strcmp(d, '2222') == 1
+       break;
+   end
+   bitsArray = [bitsArray,   decode(frequency)];
 end;    
+
 frequencies = out;
 
 bits = [];
@@ -126,7 +131,10 @@ for i = 1:length(bitsArray)
        bits = [bits bitsArray(i)];
    end
 end
-uiwait(msgbox(num2str(bitsArray), 'The decoded message', 'modal'))
+
+disp(bits)
+
+uiwait(msgbox(binToText(bits), 'The decoded message', 'modal'))
     
 end
 

@@ -120,8 +120,8 @@ disp(i)
 
 shortTime = [];
 
-while i < length(y) -1000
-   shortTime = [shortTime, y(i:(i+1028*4))];
+while i < length(y) -1028*8
+   shortTime = [shortTime, y(i:(i+1028*8))];
    i = i + Fs * T;
    
    disp st
@@ -130,8 +130,8 @@ end
 
 l = size(shortTime);
 
-han = [];
 bitsArray = [];
+
 for n = 1:l(2)
 
 %    han = [han,shortTime(:, n) .* hanning(length(shortTime(:, n)))];

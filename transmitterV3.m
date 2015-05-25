@@ -42,7 +42,7 @@ function [ output ] = transmitterV3( input )
     %duration [s]
     T=0.5;
     %sample rate [Hz] Supported by SoundCard (16000,48000,96000,192000)
-    Fs = 16000;  
+    Fs = 48000;  
     
     %waveform for binary PSK modulation coresponding 4-ary information
     waveform = generate_waves('2222' , T, Fs);

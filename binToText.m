@@ -17,7 +17,7 @@ table = zeros(s(1), 1);
 for i = 1:s(1)
     %disp(bitsMatrix(i, :))
     k = bin2dec(bitsMatrix(i, :));
-    disp(k)
+    %disp(k)
     table(i) = k;
 end
 

@@ -110,7 +110,7 @@ while  strcmp(d, '22') ~= 1
     i = i + 2000;
 end
 
-i = i+ Fs*3*T/2 - 2000;
+i = i+ Fs*3*T/2  ;
 
 disp i
 disp(i)
@@ -120,8 +120,8 @@ disp(i)
 
 shortTime = [];
 
-while i < length(y) -1028*8
-   shortTime = [shortTime, y(i:(i+1028*8))];
+while i < length(y) -1028*4
+   shortTime = [shortTime, y(i:(i+1028*4))];
    i = i + Fs * T;
    
    disp st

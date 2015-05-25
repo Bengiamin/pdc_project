@@ -2,7 +2,7 @@ function [ text ] = binToText( bitsArray )
 %Convert a binary string to a text string
 
 
-while mod(length(bitsArray), 7) ~= 0
+while mod(length(bitsArray), 8) ~= 0
       bitsArray = bitsArray(1 : end - 1);
       %disp(bitsArray);
 end

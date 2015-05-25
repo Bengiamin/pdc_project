@@ -3,9 +3,9 @@ function [ bitsArray ] = textToBin( text )
 %   Detailed explanation goes here
 
 
-bitsMatrix = dec2bin(text);
-bitsArray = reshape( bitsMatrix.', 1, []);
+bitsMatrix = dec2bin(text, 8);
 
+bitsArray = reshape( bitsMatrix.', 1, []);
 
 end
 

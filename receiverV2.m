@@ -1,4 +1,4 @@
-function [ frequencies, message ] = receiverV2( input_args )
+function [ samples, frequencies, message ] = receiverV2( input_args )
 %record a sound and output the frequency found
 
 %period [s]
@@ -23,6 +23,8 @@ else
     y = getaudiodata(recObj);
 
 end
+
+samples = y;
 
 L = length(y);
 minPeakHeight = 0.2;
@@ -119,9 +121,9 @@ for n = 1:l(2)
    frequency = Fs*b/length(han(:,n));
    out = [out; frequency*2];
    d = decode(frequency);
-   if strcmp(d, '2222') == 1
-       break;
-   end
+%    if strcmp(d, '2222') == 1
+%        break;
+%    end
    bitsArray = [bitsArray,   decode(frequency)];
 end;    
 
@@ -130,7 +132,7 @@ frequencies = out;
 bits = [];
 
 for i = 1:length(bitsArray)
-   if bitsArray(i) ~= 2 
+   if bitsArray(i) ~= '2' 
        bits = [bits bitsArray(i)];
    end
 end

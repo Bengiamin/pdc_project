@@ -60,7 +60,7 @@ end
 %samples vector
 t = 0 : 1/Fs : T;
 
-output = sin(pi*frequency*t/T);
+output = sin(pi*frequency*t);
 
 
 

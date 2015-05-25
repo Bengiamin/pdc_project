@@ -10,20 +10,18 @@ end
 bitsMatrix = reshape(bitsArray, 8, []) .';
 
 disp(bitsMatrix);
-s = size(bitsMatrix);
+s = size(bitsMatrix)
 
-text = '';
+table = zeros(s(1), 1);
 
 for i = 1:s(1)
-    %disp(bitsMatrix(i, :);
-    if strcmp(bitsMatrix(i, :), '00100000') == 1
-        text = strcat(text, ' ');
-    else
-        c = char(bin2dec(bitsMatrix(i, :)));
-        disp(c)
-        text = strcat(text, c);
-    end
+    %disp(bitsMatrix(i, :))
+    k = bin2dec(bitsMatrix(i, :));
+    disp(k)
+    table(i) = k;
 end
+
+text = char(table).';
 
 disp(text); 
 

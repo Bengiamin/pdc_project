@@ -87,18 +87,38 @@ plot(y);
 title('normalized signal')
 
 
-minPeakHeight = 0.5;
-minPeakDist = floor(0.01*Fs);
+% minPeakHeight = 0.5;
+% minPeakDist = floor(0.01*Fs);
+% 
+% %look for the first peaks
+% [peaks, locations] = findpeaks(y, 'npeaks', 5,'MinPeakHeight',minPeakHeight, 'minpeakdistance', minPeakDist);
+% 
+% %first_peak = find(diff(y) > average);
+% i = locations(1) + 4000;
+% disp 'first location'
+% disp(i)
 
-%look for the first peaks
-[peaks, locations] = findpeaks(y, 'npeaks', 5,'MinPeakHeight',minPeakHeight, 'minpeakdistance', minPeakDist);
 
-%first_peak = find(diff(y) > average);
-i = locations(1) + 4000;
-disp 'first location'
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TEST FIND BEGINNING
+i = 1;
+d = 0;
+
+while  strcmp(d, '22') ~= 1
+    f = extract_freq(y(i:i+1028), Fs);
+    disp (f)
+    d = decode(f);
+    i = i + 2000;
+end
+
+i = i+ Fs/2 - 1000;
+
+disp i
 disp(i)
-shortTime = [];
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% STOP
+
+
+shortTime = [];
 
 while i < length(y) -1000
    shortTime = [shortTime, y(i:(i+1028))];
@@ -113,17 +133,19 @@ han = [];
 bitsArray = [];
 for n = 1:l(2)
 
-   han = [han,shortTime(:, n) .* hanning(length(shortTime(:, n)))];
-%    subplot(4,1,2);
-%    plot(han);
-%    title('han');
+%    han = [han,shortTime(:, n) .* hanning(length(shortTime(:, n)))];
+%     subplot(4,1,2);
+%     plot(han);
+%     title('han');
+% 
+%    Y=fft(han(:,n));
+%    Mag=abs(Y(1:floor(length(han(:,n))/2))).^2;    
+%    [a,b]=max(Mag);     
+%    frequency = Fs*b/length(han(:,n));
 
-   Y=fft(han(:,n));
-   Mag=abs(Y(1:floor(length(han(:,n))/2))).^2;    
-   [a,b]=max(Mag);     
-   frequency = Fs*b/length(han(:,n));
-   out = [out; frequency*2];
-   d = decode(frequency);
+    frequency = extract_freq(shortTime(:, n), Fs);
+    out = [out; frequency*2];
+%   d = decode(frequency);
 %    if strcmp(d, '2222') == 1
 %        break;
 %    end
@@ -135,7 +157,7 @@ frequencies = out;
 bits = [];
 
 for i = 1:length(bitsArray)
-   if bitsArray(i) ~= '2' 
+   if bitsArray(i) ~= '2'   
        bits = [bits bitsArray(i)];
    end
 end

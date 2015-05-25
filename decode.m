@@ -39,6 +39,8 @@ switch freq
         bitArray = '1110';
     case 6000
         bitArray = '1111';
+    case 7000
+        bitArray = '22';
     otherwise
         bitArray = '2222';
 end

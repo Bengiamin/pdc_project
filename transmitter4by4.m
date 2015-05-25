@@ -45,7 +45,8 @@ function [ output ] = transmitter4by4( input )
     Fs = 16000;  
     
     %waveform for binary PSK modulation coresponding 4-ary information
-    waveform = [];
+    waveform = generate_waves('2222' , T, Fs);
+    
     for j = 1:d(1)
       waveform = [waveform,generate_waves(input(j, :), T, Fs)];
     end   

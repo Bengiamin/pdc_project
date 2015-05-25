@@ -40,7 +40,7 @@ function [ output ] = transmitter4by4( input )
     disp(input)
     
     %duration [s]
-    T=0.5;
+    T=1;
     %sample rate [Hz] Supported by SoundCard (16000,48000,96000,192000)
     Fs = 16000;  
     
@@ -50,7 +50,7 @@ function [ output ] = transmitter4by4( input )
       waveform = [waveform,generate_waves(input(j, :), T, Fs)];
     end   
     
-    waveform = [waveform, generate_waves([2 2 2 2] , T, Fs)];
+    waveform = [waveform, generate_waves('2222' , T, Fs)];
     
     %Play sound
     plot(waveform);

@@ -1,4 +1,4 @@
-function [ frequencies, bits ] = receiverV2( input_args )
+function [ frequencies, message ] = receiverV2( input_args )
 %record a sound and output the frequency found
 
 %period [s]
@@ -31,7 +31,6 @@ subplot(4,1,1)
 plot(y);
 title('received signal')
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SHIT STARTS
 %filter noise in freq domaine
 low_bound = 1000;
 high_bound =  8000;
@@ -77,9 +76,13 @@ subplot(4,1,4)
 plot(real(y))
 plot(y);
 title('filtered signal')
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SHIT ENDS
 
+y = y/max(y);
 
+subplot(4,1,4)
+plot(real(y))
+plot(y);
+title('normalized signal')
 
 
 %look for the first peaks
@@ -133,8 +136,8 @@ for i = 1:length(bitsArray)
 end
 
 disp(bits)
-
-uiwait(msgbox(binToText(bits), 'The decoded message', 'modal'))
+message = binToText(bits);
+uiwait(msgbox(message, 'The decoded message', 'modal'))
     
 end
 

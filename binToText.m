@@ -16,10 +16,11 @@ text = '';
 
 for i = 1:s(1)
     %disp(bitsMatrix(i, :);
-    if bitsMatrix(i, :) == '00100000'
+    if strcmp(bitsMatrix(i, :), '00100000') == 1
         text = strcat(text, ' ');
     else
         c = char(bin2dec(bitsMatrix(i, :)));
+        disp(c)
         text = strcat(text, c);
     end
 end

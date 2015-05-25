@@ -27,7 +27,7 @@ end
 samples = y;
 
 L = length(y);
-minPeakHeight = 0.2;
+
 
 subplot(4,1,1)
 plot(y);
@@ -87,8 +87,11 @@ plot(y);
 title('normalized signal')
 
 
+minPeakHeight = 0.5;
+minPeakDist = floor(0.01*Fs);
+
 %look for the first peaks
-[peaks, locations] = findpeaks(y, 'npeaks', 2,'MinPeakHeight',minPeakHeight);
+[peaks, locations] = findpeaks(y, 'npeaks', 5,'MinPeakHeight',minPeakHeight, 'minpeakdistance', minPeakDist);
 
 %first_peak = find(diff(y) > average);
 i = locations(1) + 4000;

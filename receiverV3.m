@@ -4,7 +4,7 @@ function [ samples, frequencies, message ] = receiverV3( input_args )
 %period [s]
 T=0.5;
 %sample rate [Hz] Supported by SoundCard (16000,48000,96000,192000)
-Fs = 16000;
+Fs = 48000;
 out = [];
 if nargin > 0
     y = input_args;
@@ -104,13 +104,13 @@ i = 1;
 d = 0;
 
 while  strcmp(d, '22') ~= 1
-    f = extract_freq(y(i:i+1028), Fs);
-    disp (f)
+    f = extract_freq(y(i:i+1028*4), Fs);
+%     disp (f)
     d = decode(f);
     i = i + 2000;
 end
 
-i = i+ Fs/2 - 1000;
+i = i+ Fs*3*T/2 - 2000;
 
 disp i
 disp(i)
@@ -121,10 +121,11 @@ disp(i)
 shortTime = [];
 
 while i < length(y) -1000
-   shortTime = [shortTime, y(i:(i+1028))];
+   shortTime = [shortTime, y(i:(i+1028*4))];
    i = i + Fs * T;
-   %disp i
-   %disp(i);
+   
+   disp st
+   disp(i)
 end
 
 l = size(shortTime);
@@ -153,6 +154,7 @@ for n = 1:l(2)
 end;    
 
 frequencies = out;
+disp(frequencies);
 
 bits = [];
 

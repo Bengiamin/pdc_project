@@ -105,12 +105,13 @@ d = 0;
 
 while  strcmp(d, '22') ~= 1
     f = extract_freq(y(i:i+1028*2), Fs);
-%     disp (f)
+    %disp (f)
     d = decode(f);
     i = i + 2000;
 end
 
-i = i+ Fs*T*3/2 - 2000;
+i = i+ Fs*3*T/2 - 2000;
+
 
 disp i
 disp(i)
@@ -120,7 +121,7 @@ disp(i)
 
 shortTime = [];
 
-while i < length(y) -1028*2
+while i < length(y) - 1028*2
    shortTime = [shortTime, y(i:(i+1028*2))];
    i = i + Fs * T;
    %disp i
@@ -129,7 +130,7 @@ end
 
 l = size(shortTime);
 
-han = [];
+
 bitsArray = [];
 for n = 1:l(2)
 

@@ -10,20 +10,19 @@ end
 bitsMatrix = reshape(bitsArray, 8, []) .';
 
 disp(bitsMatrix);
-s = size(bitsMatrix)
+s = size(bitsMatrix);
 
 table = zeros(s(1), 1);
 
 for i = 1:s(1)
     %disp(bitsMatrix(i, :))
     k = bin2dec(bitsMatrix(i, :));
-    disp(k)
     table(i) = k;
 end
 
 text = char(table).';
 
-disp(text); 
+% disp(text); 
 
 
 end

@@ -34,8 +34,8 @@ plot(y);
 title('received signal')
 
 %filter noise in freq domaine
-low_bound = 1000;
-high_bound =  8000;
+low_bound = 2500;
+high_bound =  7500;
 
 NFFT = 2^nextpow2(L(1)); % Next power of 2 from length of y
 Y = fft(y,NFFT);
@@ -104,13 +104,13 @@ i = 1;
 d = 0;
 
 while  strcmp(d, '22') ~= 1
-    f = extract_freq(y(i:i+1028), Fs);
-    disp (f)
+    f = extract_freq(y(i:i+1028*2), Fs);
+%     disp (f)
     d = decode(f);
     i = i + 2000;
 end
 
-i = i+ Fs/2 - 1000;
+i = i+ Fs*T*3/2 - 2000;
 
 disp i
 disp(i)
@@ -120,8 +120,8 @@ disp(i)
 
 shortTime = [];
 
-while i < length(y) -1000
-   shortTime = [shortTime, y(i:(i+1028))];
+while i < length(y) -1028*2
+   shortTime = [shortTime, y(i:(i+1028*2))];
    i = i + Fs * T;
    %disp i
    %disp(i);
@@ -164,6 +164,7 @@ end
 
 disp(bits)
 message = binToText(bits);
+disp(message);
 uiwait(msgbox(message, 'The decoded message', 'modal'))
     
 end
